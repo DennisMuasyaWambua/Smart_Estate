@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0099ff</color>
+    <color name="colorPrimaryDark">#0099ff</color>
+    <color name="backgroundColor">#fcfcfc</color>
+    <color name="lightGray">#ededed</color>
+    <color name="deepPurple">#7c4dff</color>
+    <color name="yellow">#FFC107</color>
+    <color name="green">#00bfa5</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="darkBlue">#23283a</color>
+    <color name="testColorBlue">#152b38</color>
+    <color name="pink">#fe104d</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="oceanBlue">#0099ff</color>
+    <color name="lightBlue"> #33e6ff </color>
+    <color name="brightYellow">#f5f10a</color>
+    <color name="cyan">#339DFF</color>
+    <color name="btn_previous"> #ecf0f1 </color>
+    <color name="btn_middle"> #d0d3d4 </color>
+    <color name="btn_last"> #b3b6b7 </color>
+</resources>

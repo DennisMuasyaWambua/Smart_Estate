@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+ <androidx.viewpager.widget.ViewPager
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:id="@+id/onBoardScreen"/>
+   <ImageView
+       android:id="@+id/bottomColor"
+       android:layout_width="match_parent"
+       android:layout_height="200dp"
+       android:background="@color/cyan"
+       android:layout_alignParentBottom="true"/>
+    <ImageView
+        android:id="@+id/oceanWave"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/bottomColor"
+        android:background="@drawable/wave_4"/>
+    <ImageView
+        android:id="@+id/logo2"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/realestate"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/welcome"
+        />
+    <TextView
+        android:id="@+id/firstHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oceanWave"
+        android:text="@string/smartEstate"
+        android:gravity="center"
+        android:textColor="@color/backgroundColor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/firstDescription"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/firstHeading"
+        android:text="@string/firstDescription"
+        android:gravity="center"
+        android:textColor="@color/backgroundColor"
+        android:textSize="25sp"/>
+      <TextView
+          android:id="@+id/next"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/firstDescription"
+          android:text="@string/btnNext1"
+          android:layout_alignParentEnd="true"
+          android:layout_marginEnd="20dp"
+          android:textColor="@color/backgroundColor"
+          android:drawableEnd="@drawable/arrow_forward"/>
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:layout_below="@+id/next"
+     android:id="@+id/navigationDots"
+     android:gravity="center"
+     android:layout_centerInParent="true"
+     >
+  <ImageView
+      android:id="@+id/firstDot"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/dot_last"
+      android:layout_gravity="center"
+      android:padding="5dp"
+   />
+  <ImageView
+      android:id="@+id/secondDot"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/dot_middle"
+      android:layout_margin="10dp"
+      android:padding="5dp"
+      android:layout_gravity="center"/>
+  <ImageView
+      android:id="@+id/thirdButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="5dp"
+      android:background="@drawable/dot_previous"/>
+
+
+
+
+ </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
