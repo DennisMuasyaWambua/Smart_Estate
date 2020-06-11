@@ -30,11 +30,6 @@ public class RegistrationActivity extends AppCompatActivity {
         buttonRegister = (Button)findViewById(R.id.buttonRegister);
         loginRedirect = (TextView)findViewById(R.id.loginRedirect);
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegistrationActivity.this, services.class));
-            }
-        });
+
     }
 }

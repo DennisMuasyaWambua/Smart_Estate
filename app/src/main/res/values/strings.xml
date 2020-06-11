@@ -41,4 +41,8 @@
     <string name="rentals">Rentals</string>
     <string name="studentAccommodation">Student Accommodation</string>
     <string name="title_here">title here</string>
+    <string name="Landlord">Landlord</string>
+    <string name="Tenant">Tenant</string>
+    <string name="join">Join the digital wave</string>
+    <string name="navigation">Navigation Drawer</string>
 </resources>
