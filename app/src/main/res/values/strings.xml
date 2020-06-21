@@ -45,4 +45,18 @@
     <string name="Tenant">Tenant</string>
     <string name="join">Join the digital wave</string>
     <string name="navigation">Navigation Drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="name">Your Name</string>
+    <string name="rentBalance">Ksh 0.00</string>
+    <string name="rent">Rent Balance</string>
+    <string name="serviceCharge">Service Charge Balance</string>
+    <string name="loan">Loan Balance</string>
+    <string name="payRent">PayRent</string>
+    <string name="pay_rent">Pay Rent</string>
+    <string name="payServiceCharge">Pay Service Charge</string>
+    <string name="takeLoan">Take a loan</string>
+    <string name="hello">Hello there..</string>
+    <string name="received">You have received 0 payments</string>
+    <string name="expensesBalance">Total expenses balance</string>
 </resources>

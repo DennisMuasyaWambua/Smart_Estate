@@ -28,6 +28,11 @@ public class loginActivity extends AppCompatActivity {
         forgotPassword = (TextView)findViewById(R.id.forgotPassword);
         login = (Button)findViewById(R.id.login);
 
-
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(loginActivity.this,services.class));
+            }
+        });
     }
 }

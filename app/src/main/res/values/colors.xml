@@ -19,4 +19,6 @@
     <color name="btn_previous"> #ecf0f1 </color>
     <color name="btn_middle"> #d0d3d4 </color>
     <color name="btn_last"> #b3b6b7 </color>
+    <color name="background_purple">#4A46EB</color>
+    <color name="card_background">#3498DB</color>
 </resources>

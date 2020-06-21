@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LandlordsActivity"
+    android:background="@drawable/background_yellow">
+    <TextView
+        android:id="@+id/landlordName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/black_overlay"/>
+    <TextView
+        android:id="@+id/rentPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/landlordName"
+        android:gravity="center"
+        android:text="@string/received"
+        android:textSize="20sp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/expensesCard"
+        android:layout_width="200dp"
+        android:layout_height="190dp"
+        android:layout_below="@+id/rentPayment"
+        android:layout_marginTop="30dp"
+        app:cardBackgroundColor="#DB0E3F"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="40dp">
+
+        <LinearLayout
+            android:id="@+id/expenseIcons"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/water"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/water"/>
+            <ImageView
+                android:id="@+id/electricity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/electricity"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/statements"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rentBalance"
+                android:gravity="center"
+                android:textSize="25sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/expensesBalance"
+                android:textSize="25sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="195dp"
+        android:layout_toEndOf="@+id/expensesCard"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="90dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="30dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

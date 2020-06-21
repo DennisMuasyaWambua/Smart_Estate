@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private EditText surname, estate, blockNumber, house, phoneNumber, Password, confirmation;
+    private EditText surname, estate, phoneNumber, Password, confirmation;
     private Button buttonRegister;
     private TextView loginRedirect;
 
@@ -22,8 +22,6 @@ public class RegistrationActivity extends AppCompatActivity {
         //initializing the values
         surname = (EditText)findViewById(R.id.surname);
         estate = (EditText)findViewById(R.id.estate);
-        blockNumber = (EditText)findViewById(R.id.blockNumber);
-        house = (EditText)findViewById(R.id.house);
         phoneNumber = (EditText)findViewById(R.id.phoneNumber);
         Password = (EditText)findViewById(R.id.Password);
         confirmation = (EditText)findViewById(R.id.confirmation);

@@ -3,17 +3,30 @@ package com.example.smartestate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-public class DashboardFragment extends Fragment implements View.OnClickListener{
+
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.Objects;
+
+public class DashboardFragment extends Fragment implements  NavigationView.OnNavigationItemSelectedListener {
     private CardView statementCard, paymentCard,suggestionsCard, servicesCard;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    private Toolbar toolbar;
+
 
 
     @Nullable
@@ -27,24 +40,33 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         suggestionsCard = (CardView)v.findViewById(R.id.suggestionsCard);
         servicesCard = (CardView)v.findViewById(R.id.servicesCard);
 
-        //setting the click listeners to this fragment in particular
-        statementCard.setOnClickListener(this);
-        paymentCard.setOnClickListener(this);
-        suggestionsCard.setOnClickListener(this);
-        servicesCard.setOnClickListener(this);
+        paymentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),PaymentsActivity.class));
+            }
+        });
+
+
+        //setting up the hooks
+        drawerLayout = (DrawerLayout) v.findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) v.findViewById(R.id.nav_view);
+        toolbar = (Toolbar)v.findViewById(R.id.toolbar);
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+        //navigation Drawer menu
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(),drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+
         return v;
     }
-
     @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()){
-            case R.id.statementCard: intent = new Intent();startActivity(intent);break;
-            case R.id.paymentCard: intent = new Intent();startActivity(intent);break;
-            case R.id.suggestionsCard: intent = new Intent();startActivity(intent);break;
-            case R.id.servicesCard:intent = new Intent();startActivity(intent);break;
-            default:break;
-        }
-        
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return true;
     }
 }
