@@ -1,36 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RegistrationActivity">
     <View
         android:id="@+id/topYellowView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:background="@color/yellow"
         android:focusable="true"/>
     <View
         android:id="@+id/yellowWave"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:layout_below="@+id/topYellowView"
         android:background="@drawable/yellow_wave"
         android:focusable="true"/>
-    <ImageView
-        android:id="@+id/iconEstate"
+
+    <RelativeLayout
+        android:id="@+id/logoShaper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/realestate"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/nameOfEstate"
-        android:padding="16dp"/>
+        android:gravity="center"
+        >
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="20dp"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:id="@+id/iconEstate"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/smart1"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/nameOfEstate"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    />
+
+            </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/welcomeMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iconEstate"
+        android:layout_below="@+id/logoShaper"
         android:text="@string/welcome"
         android:gravity="center"
         android:layout_centerHorizontal="true"
@@ -48,7 +67,7 @@
         android:focusable="true"
         android:clickable="true"
         android:background="@drawable/round_border_yellow"
-        android:drawableStart="@drawable/account"
+        android:drawableStart="@drawable/account_image"
         android:autofillHints="@string/surname"
         android:inputType="text"
         android:layout_marginBottom="10dp"/>
@@ -67,13 +86,24 @@
         android:focusable="true"
         android:autofillHints="@string/nameOfEstate"
         />
-
-
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_border_yellow"
+        android:layout_below="@+id/estate"
+        android:hint="@string/email"
+        android:gravity="center"
+        android:padding="16dp"
+        android:layout_marginBottom="10dp"
+        android:drawableStart="@drawable/mail"
+        android:inputType="textEmailAddress"
+        android:autofillHints="@string/emailExample" />
     <EditText
        android:id="@+id/phoneNumber"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_below="@id/estate"
+       android:layout_below="@id/email"
        android:padding="16dp"
        android:background="@drawable/round_border_yellow"
        android:hint="@string/phone"

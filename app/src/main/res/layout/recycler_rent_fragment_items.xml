@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="4dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">
+
+            <ImageView
+                android:id="@+id/estateImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="2dp"/>
+            <TextView
+                android:id="@+id/buildingName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/propety"
+                android:layout_toEndOf="@+id/estateImage"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/rentTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/totalRent"
+                android:layout_below="@+id/buildingName"
+                android:layout_toEndOf="@+id/estateImage"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/rentTotal"
+                android:layout_below="@+id/buildingName"
+                android:text="@string/rentBalance"
+                android:layout_marginStart="10dp"
+                android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/totalDue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/total"
+                android:layout_below="@+id/buildingName"
+                android:text="@string/totalDue"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginStart="90dp"
+                />
+            <TextView
+                android:id="@+id/amountDue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/totalDue"
+                android:layout_below="@+id/buildingName"
+                android:text="@string/rentBalance"
+                android:layout_marginStart="5dp"
+                android:textColor="#000000"
+                />
+            <TextView
+                android:id="@+id/EstateName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eName"
+                android:layout_toEndOf="@+id/buildingName"
+                android:layout_marginStart="90dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

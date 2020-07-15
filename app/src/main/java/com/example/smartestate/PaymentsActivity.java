@@ -14,5 +14,14 @@ public class PaymentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payments);
+        estateImageView = (ImageView)findViewById(R.id.estateImageView);
+        profileImageView = (ImageView)findViewById(R.id.profileImageView);
+        rentBalanceCard = (CardView)findViewById(R.id.rentBalanceCard);
+        serviceChargeBalanceCard = (CardView)findViewById(R.id.serviceChargeBalanceCard);
+        loanBalanceCard = (CardView)findViewById(R.id.loanBalanceCard);
+        rentPaymentCard = (CardView)findViewById(R.id.rentPaymentCard);
+        serviceChargePaymentCard = (CardView)findViewById(R.id.serviceChargePaymentCard);
+
+
     }
 }

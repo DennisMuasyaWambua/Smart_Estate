@@ -40,14 +40,6 @@ public class DashboardFragment extends Fragment implements  NavigationView.OnNav
         suggestionsCard = (CardView)v.findViewById(R.id.suggestionsCard);
         servicesCard = (CardView)v.findViewById(R.id.servicesCard);
 
-        paymentCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),PaymentsActivity.class));
-            }
-        });
-
-
         //setting up the hooks
         drawerLayout = (DrawerLayout) v.findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) v.findViewById(R.id.nav_view);
@@ -55,12 +47,21 @@ public class DashboardFragment extends Fragment implements  NavigationView.OnNav
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
-        ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+
+
+      ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
         //navigation Drawer menu
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(),drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        paymentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),PaymentsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         return v;

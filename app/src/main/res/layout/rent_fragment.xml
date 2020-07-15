@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:padding="4dp"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addBuilding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rentRecyclerView"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RelativeOverlap"
+        android:src="@drawable/addition"
+
+        />
+    <TextView
+        android:id="@+id/building"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addBuilding"
+        android:layout_alignBottom="@+id/rentRecyclerView"
+        android:layout_toStartOf="@+id/addBuilding"
+        android:layout_marginBottom="30dp"
+        android:textColor="#000000"
+        tools:ignore="RelativeOverlap" />
+
+</RelativeLayout>

@@ -59,4 +59,30 @@
     <string name="hello">Hello there..</string>
     <string name="received">You have received 0 payments</string>
     <string name="expensesBalance">Total expenses balance</string>
+    <string name="cancel">Cancel</string>
+    <string name="terms">Terms and conditions</string>
+    <string name="SmartTerms">
+         By registering you agree to Smart Estate deducting 3% of all transactions to carter for operational costs
+    </string>
+    <string name="agree">Agree</string>
+    <string name="decline">Decline</string>
+    <string name="rentMoney">Rent Money</string>
+    <string name="collection">Total Rent Income</string>
+    <string name="Rent">Rent</string>
+    <string name="occupancy">Occupancy</string>
+    <string name="expenses">Expenses</string>
+    <string name="addBuilding">add building</string>
+    <string name="propety">Building Name</string>
+    <string name="totalRent">Total rent</string>
+    <string name="totalDue">Total due :</string>
+    <string name="nameOfBuilding">Building Name</string>
+    <string name="ownership">Name of the building you own</string>
+    <string name="EstateName">Name of estate</string>
+    <string name="building">Name of building</string>
+    <string name="capacity">Capacity</string>
+    <string name="eName">Estate Name</string>
+    <string name="estateImage">Image of that building</string>
+    <string name="imageOfTheBuilding">Building Image</string>
+    <string name="upload">Upload picture</string>
+    <string name="takePhoto">Take photo</string>
 </resources>

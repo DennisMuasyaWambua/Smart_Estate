@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".PaymentsActivity"
-    android:background="@drawable/payments_background">
+    android:background=" #3498db">
     <androidx.cardview.widget.CardView
+        android:id="@+id/identityCard"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:cardCornerRadius="30dp"
-        app:cardBackgroundColor="@drawable/card_background">
+        app:cardBackgroundColor=" #3498db
+">
             <RelativeLayout
                 android:id="@+id/cardOrganizer"
                 android:layout_width="match_parent"
@@ -27,7 +29,7 @@
                             android:id="@+id/estateImageView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/key"
+                            android:src="@drawable/funguo"
                             />
                     </androidx.cardview.widget.CardView>
 
@@ -55,10 +57,11 @@
                             android:id="@+id/profileImageView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/account"
+                            android:src="@drawable/account_circle"
                             android:contentDescription="@string/name" />
                 </androidx.cardview.widget.CardView>
                     <TextView
+                        android:id="@+id/clientsName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -73,22 +76,24 @@
     <LinearLayout
         android:id="@+id/balanceStatementRow"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/nameOfEstate"
+        android:layout_height="170dp"
+        android:layout_below="@+id/identityCard"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        tools:ignore="NotSibling"
+        android:layout_marginTop="-10dp"
         android:orientation="horizontal"
+        android:layout_marginStart="0dp"
+        android:gravity="center"
+        tools:ignore="NotSibling"
         >
             <androidx.cardview.widget.CardView
                 android:id="@+id/rentBalanceCard"
                 android:layout_width="125dp"
                 android:layout_height="150dp"
-                android:layout_marginStart="20dp"
-
+                android:layout_marginStart="35dp"
                 app:cardCornerRadius="40dp"
-                app:cardBackgroundColor="#201BF4"
-
+                app:cardBackgroundColor="#311fe3"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 >
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -96,12 +101,12 @@
                         android:orientation="vertical"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:layout_margin="0dp">
+                            >
                                 <ImageView
                                     android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/purple_circle_background"
+                                    android:layout_height="60dp"
                                     android:src="@drawable/rent"
+                                    android:layout_marginTop="0dp"
                                     />
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -109,14 +114,13 @@
                                         android:text="@string/rentBalance"
                                         android:gravity="center"
                                         android:layout_marginTop="5dp"
-                                        android:textSize="20sp"
+                                        android:textSize="16sp"
                                         android:textColor="@color/backgroundColor"/>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/rent"
                                         android:textColor="@color/backgroundColor"
-                                        android:textSize="19sp"
                                         android:textAlignment="center"/>
 
                     </LinearLayout>
@@ -125,28 +129,33 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/serviceChargeBalanceCard"
-            android:layout_width="120dp"
+            android:layout_width="125dp"
             android:layout_height="150dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             app:cardCornerRadius="40dp"
-            app:cardBackgroundColor="#201BF4"
+            app:cardBackgroundColor="#311fe3"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             >
                     <LinearLayout
+                        android:layout_marginStart="0dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        >
                                 <ImageView
                                     android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:background="@drawable/background_apricot"
+                                    android:layout_height="60dp"
                                     android:src="@drawable/pig"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/rentBalance"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/backgroundColor"
-                                    android:textSize="20sp"
+                                    android:textSize="16sp"
                                     />
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -154,18 +163,20 @@
                                     android:text="@string/serviceCharge"
                                     android:textAlignment="center"
                                     android:textColor="@color/backgroundColor"
-                                    android:textSize="17sp"/>
+                                    />
                     </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:id="@+id/loanBalanceCard"
             android:layout_width="125dp"
             android:layout_height="150dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="35dp"
             app:cardCornerRadius="40dp"
-            app:cardBackgroundColor="#201BF4"
+            app:cardBackgroundColor="#311fe3"
             android:focusable="true"
-            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:foreground="?android:attr/selectableItemBackground">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,24 +185,25 @@
                     android:gravity="center">
                         <ImageView
                             android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/background_weight"
+                            android:layout_height="60dp"
                             android:src="@drawable/debt"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/rentBalance"
                             android:textColor="@color/backgroundColor"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             android:textAlignment="center"
                             />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/loan"
-                            android:textSize="18sp"
+
                             android:textColor="@color/backgroundColor"
-                            android:textAlignment="center"/>
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:layout_gravity="center"/>
                 </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
@@ -199,10 +211,10 @@
     <LinearLayout
         android:id="@+id/paymentRow"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="160dp"
         android:layout_below="@+id/balanceStatementRow"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
             <androidx.cardview.widget.CardView
                 android:id="@+id/rentPaymentCard"
@@ -231,7 +243,7 @@
                                 android:text="@string/pay_rent"
                                 android:textAlignment="center"
                                 android:textColor="@color/backgroundColor"
-                                android:textSize="20sp"/>
+                                android:textSize="16sp"/>
                     </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -260,7 +272,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/payServiceCharge"
                             android:textColor="@color/backgroundColor"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             android:textAlignment="center"/>
                     </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -275,12 +287,13 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/loanTakingCard"
             android:layout_width="300dp"
-            android:layout_height="160dp"
+            android:layout_height="140dp"
             app:cardCornerRadius="40dp"
             app:cardBackgroundColor="#201BF4"
             app:cardElevation="30dp"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:layout_marginBottom="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -297,12 +310,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="50dp"
-                            android:layout_marginStart="10dp"
                             >
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:background="@drawable/background_weight"
                                 android:src="@drawable/loan"
                                 />
                         </androidx.cardview.widget.CardView>

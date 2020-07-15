@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginActivity"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".loginActivity">
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
@@ -18,18 +17,36 @@
         android:layout_height="100dp"
         android:background="@drawable/ic_wave"
         android:layout_below="@+id/topView"/>
-    <ImageView
-        android:id="@+id/icon"
+    <RelativeLayout
+        android:id="@+id/logo_shaper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/realestate"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/login"/>
+        android:gravity="center"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="20dp"
+            android:layout_margin="10dp">
+            <ImageView
+                android:id="@+id/iconEstate"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/smart1"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/nameOfEstate"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                />
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_below="@+id/icon"
+        android:layout_below="@+id/logo_shaper"
         android:text="@string/app_name"
         android:gravity="center"
         android:textStyle="bold"
