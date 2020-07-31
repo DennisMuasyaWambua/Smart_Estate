@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "126371558367",
+    "firebase_url": "https://sage-707cf.firebaseio.com",
+    "project_id": "sage-707cf",
+    "storage_bucket": "sage-707cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126371558367:android:f51c8ed152b481f9d38a6a",
+        "android_client_info": {
+          "package_name": "com.example.smartestate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126371558367-shf81rbc6jpfh2s8d4l9nfubs31grtpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvfGagH46x_2r40oHJTAoM_I6QqYdIXxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126371558367-shf81rbc6jpfh2s8d4l9nfubs31grtpv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

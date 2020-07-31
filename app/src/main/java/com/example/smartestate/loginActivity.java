@@ -9,10 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class loginActivity extends AppCompatActivity {
     private EditText estateName, Block, houseNumber,password;
     private TextView registration, forgotPassword;
     private Button login;
+    private FirebaseDatabase rootNode;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

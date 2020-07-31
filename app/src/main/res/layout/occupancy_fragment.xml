@@ -1,11 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="4dp">
+            <ImageView
+                android:id="@+id/buildingImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                />
+            <TextView
+                android:id="@+id/NameEstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/buildingImage"
+                android:textColor="#000000"
+                android:text="@string/nameOfEstate"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/Occupied"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/buildingImage"
+                android:layout_below="@+id/NameEstate"
+                android:text="@string/occupied"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/amountOccupied"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amountOccupied"
+                android:layout_toEndOf="@+id/Occupied"
+                android:layout_below="@+id/NameEstate"
+                android:layout_marginStart="10dp"
+                android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/vacant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vacant"
+                android:layout_toEndOf="@+id/amountOccupied"
+                android:layout_below="@+id/NameEstate"
+                android:layout_marginStart="100dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/amountVacant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amountOccupied"
+                android:layout_toEndOf="@+id/vacant"
+                android:layout_below="@+id/NameEstate"
+                android:layout_marginStart="10dp"
+                android:textColor="#000000"/>
 
 
-</RelativeLayout>
+            
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

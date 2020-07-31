@@ -85,4 +85,7 @@
     <string name="imageOfTheBuilding">Building Image</string>
     <string name="upload">Upload picture</string>
     <string name="takePhoto">Take photo</string>
+    <string name="occupied">Occupied</string>
+    <string name="amountOccupied">0</string>
+    <string name="vacant">Vacant</string>
 </resources>
