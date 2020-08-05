@@ -132,7 +132,7 @@
                             android:id="@+id/newBuilding"
                             android:layout_width="300dp"
                             android:layout_height="50dp"
-                            android:text="@string/addBuilding"
+                            android:text="@string/SetRoomPrices"
                             android:textColor="@color/backgroundColor"
                             android:background="@drawable/background_yellow"
                             android:layout_margin="20dp"/>

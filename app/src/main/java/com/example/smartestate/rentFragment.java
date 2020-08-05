@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,10 +39,11 @@ public class rentFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     private Dialog addBuildingDialog;
     private ImageView close,imageOfEstate;
-    private EditText nameEstate, nameBuilding;
+    private EditText nameEstate, nameBuilding, unitOnePrice, unitTwoPrice, unitThreePrice, unitFourPrice;
     private NumberPicker capacityPicker;
     private Button newBuilding, uploadPicture;
     private ImageButton takePicture;
+    private Spinner unitOne, unitTwo, unitThree, unitFour;
     private static final int IMAGE_PICK_CODE=1000;
     private static final int PERMISSION_CODE=1001;
     private static final int REQUEST_IMAGE_CAPTURE=1;
@@ -83,9 +85,18 @@ public class rentFragment extends Fragment {
         newBuilding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String estate = nameEstate.getText().toString();
-                String building = nameBuilding.getText().toString();
+                addBuildingDialog.setContentView(R.layout.room_prices_dialogue);
+                //spinner declaration
+                unitOne = (Spinner)addBuildingDialog.findViewById(R.id.unitOne);
+                unitTwo = (Spinner)addBuildingDialog.findViewById(R.id.unitTwo);
+                unitThree = (Spinner)addBuildingDialog.findViewById(R.id.unitThree);
+                unitFour = (Spinner) addBuildingDialog.findViewById(R.id.unitFour);
 
+                //editText declaration
+                unitOnePrice = (EditText)addBuildingDialog.findViewById(R.id.unitOnePrice);
+                unitTwoPrice = (EditText)addBuildingDialog.findViewById(R.id.unitTwoPrice);
+                unitThreePrice = (EditText)addBuildingDialog.findViewById(R.id.unitThreePrice);
+                unitFourPrice = (EditText)addBuildingDialog.findViewById(R.id.unitFourPrice);
 
 
 

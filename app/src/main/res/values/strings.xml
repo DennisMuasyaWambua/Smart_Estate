@@ -88,4 +88,9 @@
     <string name="occupied">Occupied</string>
     <string name="amountOccupied">0</string>
     <string name="vacant">Vacant</string>
+    <string name="SetRoomPrices">Set Room prices</string>
+    <string name="room">Room</string>
+    <string name="prices">Room prices</string>
+    <string name="amount">rent in Ksh</string>
+    <string name="setPrice">Set Price</string>
 </resources>
