@@ -22,16 +22,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private EditText surname, estate, email,phoneNumber, Password, confirmation;
-    private Button buttonRegister, agreeButton;
-    private TextView loginRedirect;
-    private Dialog epicDialog;
-    private ImageView cancelButton;
-    private FirebaseAuth mAuth;
+     EditText surname, estate, email,phoneNumber, Password, confirmation;
+     Button buttonRegister, agreeButton;
+     TextView loginRedirect;
+     Dialog epicDialog;
+     ImageView cancelButton;
+     FirebaseAuth mAuth;
+     FirebaseDatabase rootNode;
+     DatabaseReference reference;
+
+    String Surname = surname.getText().toString();
+    String estateName = estate.getText().toString();
+    String Email = email.getText().toString();
+    String phone = phoneNumber.getText().toString();
 
 
     @Override
@@ -97,13 +106,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
     public void createUser(){
-        String Email = email.getText().toString().trim();
+        final String Email = email.getText().toString().trim();
         String password = Password.getText().toString().trim();
         mAuth.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     //if user creation was successful
+                    rootNode = FirebaseDatabase.getInstance();
+                    reference = rootNode.getReference("Landlord");
+                    SmartModel landlord = new SmartModel(Surname,estateName,Email,phone);
+                    reference.setValue(landlord);
                    Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(RegistrationActivity.this,LandlordsActivity.class));
                 }else{

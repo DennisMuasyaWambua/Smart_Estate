@@ -97,6 +97,7 @@ public class rentFragment extends Fragment {
                 unitTwoPrice = (EditText)addBuildingDialog.findViewById(R.id.unitTwoPrice);
                 unitThreePrice = (EditText)addBuildingDialog.findViewById(R.id.unitThreePrice);
                 unitFourPrice = (EditText)addBuildingDialog.findViewById(R.id.unitFourPrice);
+                addBuildingDialog.show();
 
 
 

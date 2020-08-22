@@ -12,10 +12,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         super(fm, numOfTabs);
     }
 
-    /**PagerAdapter(FragmentManager fm,int numOfTabs){
-       super(fm);
-       this.numOfTabs = numOfTabs;
-   }**/
+
     @NonNull
     @Override
     public Fragment getItem(int position) {

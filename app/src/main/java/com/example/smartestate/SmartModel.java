@@ -1,20 +1,28 @@
 package com.example.smartestate;
 
 public class SmartModel {
-    private String EstateName,Surname,blockNumber,password,confirmPassword;
-    private int houseNumber,phoneNumber;
+    private String EstateName,Surname,blockNumber,password,confirmPassword,email,phoneNumber;
+    private int houseNumber;
 
     public SmartModel(){
 
     }
 
-    public SmartModel(String estateName, String surname, String blockNumber, String password, String confirmPassword, int houseNumber, int phoneNumber) {
+    public SmartModel(String estateName, String surname, String blockNumber, String password,String email ,String confirmPassword, int houseNumber, String phoneNumber) {
         EstateName = estateName;
         Surname = surname;
         this.blockNumber = blockNumber;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.houseNumber = houseNumber;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    public SmartModel(String surname,String EstateName,String email, String phoneNumber){
+        this.Surname = surname;
+        this.EstateName = EstateName;
+        this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
@@ -66,11 +74,11 @@ public class SmartModel {
         this.houseNumber = houseNumber;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

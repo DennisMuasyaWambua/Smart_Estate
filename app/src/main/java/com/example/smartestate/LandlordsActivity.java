@@ -10,7 +10,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class LandlordsActivity extends AppCompatActivity {
-    private Toolbar toolbar;
+   // private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
@@ -20,14 +20,15 @@ public class LandlordsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landlords);
-        toolbar = findViewById(R.id.toolbar);
-        tabLayout = findViewById(R.id.dashboard);
-        viewPager = findViewById(R.id.viewPager);
+      // toolbar =  findViewById(R.id.toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.dashboard);
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
                 
             }
 

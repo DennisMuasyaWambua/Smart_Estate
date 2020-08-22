@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LandlordsActivity"
-    android:background="">
+    >
     <TextView
         android:id="@+id/landlordName"
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
         android:textSize="20sp"/>
     <androidx.cardview.widget.CardView
         android:id="@+id/expensesCard"
-        android:layout_width="200dp"
+        android:layout_width="190dp"
         android:layout_height="190dp"
         android:layout_below="@+id/rentPayment"
         android:layout_marginTop="30dp"
@@ -48,7 +48,8 @@
                 android:id="@+id/electricity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/electricity"/>
+                android:src="@drawable/electricity"
+                android:contentDescription="@string/electricity" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,7 +78,7 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/rentCard"
-        android:layout_width="200dp"
+        android:layout_width="190dp"
         android:layout_height="195dp"
         android:layout_toEndOf="@+id/expensesCard"
         android:layout_marginStart="10dp"
@@ -116,15 +117,7 @@
                     android:textSize="25sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_below="@+id/rentCard"/>
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/dashboard"
@@ -133,6 +126,7 @@
             android:layout_below="@+id/rentCard"
             app:tabSelectedTextColor="@color/backgroundColor"
             app:tabTextColor="#000000"
+            android:background="@color/yellow"
             >
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/Rent"
