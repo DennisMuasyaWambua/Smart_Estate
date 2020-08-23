@@ -37,10 +37,7 @@ public class RegistrationActivity extends AppCompatActivity {
      FirebaseDatabase rootNode;
      DatabaseReference reference;
 
-    String Surname = surname.getText().toString();
-    String estateName = estate.getText().toString();
-    String Email = email.getText().toString();
-    String phone = phoneNumber.getText().toString();
+
 
 
     @Override
@@ -108,15 +105,21 @@ public class RegistrationActivity extends AppCompatActivity {
     public void createUser(){
         final String Email = email.getText().toString().trim();
         String password = Password.getText().toString().trim();
+        final String Surname = surname.getText().toString().trim();
+        final String estateName = estate.getText().toString().trim();
+        final String mail = email.getText().toString().trim();
+        final String phone = phoneNumber.getText().toString().trim();
         mAuth.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     //if user creation was successful
+
+                   // reference = FirebaseDatabase.getInstance().getReference("Landlord");
                     rootNode = FirebaseDatabase.getInstance();
                     reference = rootNode.getReference("Landlord");
-                    SmartModel landlord = new SmartModel(Surname,estateName,Email,phone);
-                    reference.setValue(landlord);
+                    SmartModel landlord = new SmartModel(Surname,estateName,mail,phone);
+                    reference.child("Landlord_phone").setValue(landlord);
                    Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(RegistrationActivity.this,LandlordsActivity.class));
                 }else{
@@ -238,6 +241,9 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+    public void accountInformation(){
 
     }
 }
