@@ -94,4 +94,5 @@
     <string name="amount">rent in Ksh</string>
     <string name="setPrice">Set Price</string>
     <string name="electricity">TODO</string>
+    <string name="accountNumber">Account Number</string>
 </resources>
