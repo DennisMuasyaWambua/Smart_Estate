@@ -47,6 +47,28 @@
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:autofillHints="@string/accountNumber"/>
+            <EditText
+                android:id="@+id/payBillNumber"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:background="@drawable/white_edit_text"
+                android:layout_marginTop="20dp"
+                android:hint="@string/paybillNumber"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:inputType="number"
+                android:autofillHints="@string/accountNumber"/>
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_background_yellow"
+                android:text="@string/submit"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/backgroundColor"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_margin="10dp"/>
 
         </LinearLayout>
 

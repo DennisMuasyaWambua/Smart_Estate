@@ -1,8 +1,8 @@
 package com.example.smartestate;
 
 public class SmartModel {
-    private String EstateName,Surname,blockNumber,password,confirmPassword,email,phoneNumber;
-    private int houseNumber;
+     String EstateName,Surname,email,blockNumber,password,confirmPassword,phoneNumber;
+     int houseNumber, payBill, accountNumber;
 
     public SmartModel(){
 
@@ -24,6 +24,11 @@ public class SmartModel {
         this.EstateName = EstateName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public SmartModel(int accountNumber, int payBill){
+        this.accountNumber = accountNumber;
+        this.payBill = payBill;
     }
 
     public String getEstateName() {

@@ -28,14 +28,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
-     EditText surname, estate, email,phoneNumber, Password, confirmation;
-     Button buttonRegister, agreeButton;
+     EditText surname, estate, email,phoneNumber, Password, confirmation, accountNumber, payBillNumber;
+     Button buttonRegister, agreeButton, submit;
      TextView loginRedirect;
      Dialog epicDialog;
      ImageView cancelButton;
      FirebaseAuth mAuth;
      FirebaseDatabase rootNode;
      DatabaseReference reference;
+     ImageView exit;
 
 
 
@@ -92,8 +93,8 @@ public class RegistrationActivity extends AppCompatActivity {
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    accountInformation();
                     validate();
-                    //create a loading animation
                     createUser();
 
             }
@@ -240,10 +241,66 @@ public class RegistrationActivity extends AppCompatActivity {
                 }else{confirmation.setError(null);}
             }
         });
+        accountNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        payBillNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
     }
     public void accountInformation(){
+        epicDialog.setContentView(R.layout.account_information);
+        accountNumber = (EditText)findViewById(R.id.accountNumber);
+        payBillNumber = (EditText)findViewById(R.id.payBillNumber);
+        exit = (ImageView)findViewById(R.id.exit);
+        submit = (Button)findViewById(R.id.submit);
 
+        final int AccountNumber = accountNumber.getInputType();
+        final int PayBill = payBillNumber.getInputType();
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rootNode=FirebaseDatabase.getInstance();
+                reference = rootNode.getReference("Landlord");
+                SmartModel model = new SmartModel(AccountNumber, PayBill);
+                reference.child("Landlord_phone").setValue(model);
+            }
+        });
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                epicDialog.dismiss();
+            }
+        });
+        epicDialog.show();
     }
 }

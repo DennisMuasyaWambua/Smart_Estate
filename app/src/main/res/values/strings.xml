@@ -95,4 +95,6 @@
     <string name="setPrice">Set Price</string>
     <string name="electricity">TODO</string>
     <string name="accountNumber">Account Number</string>
+    <string name="paybillNumber">Paybill Number</string>
+    <string name="submit">Submit</string>
 </resources>
