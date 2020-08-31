@@ -46,7 +46,8 @@
                 android:drawableStart="@drawable/bank"
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
-                android:autofillHints="@string/accountNumber"/>
+                android:autofillHints="@string/accountNumber"
+                />
             <EditText
                 android:id="@+id/payBillNumber"
                 android:layout_width="300dp"

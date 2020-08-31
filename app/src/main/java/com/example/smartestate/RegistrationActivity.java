@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.net.Inet4Address;
 import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -93,9 +95,9 @@ public class RegistrationActivity extends AppCompatActivity {
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    accountInformation();
+                accountInformation();
                     validate();
-                    createUser();
+
 
             }
         });
@@ -131,6 +133,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
     public void validate(){
+        
         surname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -187,7 +190,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String Email = email.getText().toString().trim();
-                String emailPattern = "^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
+                String emailPattern = "[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
                 if(Email.isEmpty()||!Email.matches(emailPattern)){
                     email.setError("Invalid email address!");
                 }else{
@@ -278,21 +281,31 @@ public class RegistrationActivity extends AppCompatActivity {
     }
     public void accountInformation(){
         epicDialog.setContentView(R.layout.account_information);
-        accountNumber = (EditText)findViewById(R.id.accountNumber);
-        payBillNumber = (EditText)findViewById(R.id.payBillNumber);
-        exit = (ImageView)findViewById(R.id.exit);
-        submit = (Button)findViewById(R.id.submit);
+        accountNumber = (EditText)epicDialog.findViewById(R.id.accountNumber);
+        payBillNumber = (EditText)epicDialog.findViewById(R.id.payBillNumber);
+        exit = (ImageView)epicDialog.findViewById(R.id.exit);
+        submit = (Button)epicDialog.findViewById(R.id.submit);
 
-        final int AccountNumber = accountNumber.getInputType();
-        final int PayBill = payBillNumber.getInputType();
+        final String AccountNumber = accountNumber.getText().toString();
+        final String payBill  = payBillNumber.getText().toString();
 
+        int value=0;
+        int val=0;
+        if(!"".equals(AccountNumber)&&!"".equals(payBill)){
+            value = Integer.parseInt(AccountNumber);
+            val = Integer.parseInt(payBill);
+        }
+
+        final int finalValue = value;
+        final int finalVal = val;
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rootNode=FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("Landlord");
-                SmartModel model = new SmartModel(AccountNumber, PayBill);
+                SmartModel model = new SmartModel(finalValue, finalVal);
                 reference.child("Landlord_phone").setValue(model);
+                createUser();
             }
         });
         exit.setOnClickListener(new View.OnClickListener() {
