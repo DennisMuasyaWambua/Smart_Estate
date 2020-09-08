@@ -12,9 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 public class ProfileFragment extends Fragment {
-    private CardView LandLordHeader;
-    private CardView TenantsCard;
-    @Nullable
+     CardView LandLordHeader;
+     CardView TenantsCard;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile,container,false);

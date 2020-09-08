@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -25,8 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.net.Inet4Address;
 import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -96,9 +95,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 accountInformation();
-                    validate();
-
-
+               //validate();
             }
         });
         Objects.requireNonNull(epicDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -106,27 +103,22 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
     public void createUser(){
-        final String Email = email.getText().toString().trim();
+        String Email = email.getText().toString().trim();
         String password = Password.getText().toString().trim();
-        final String Surname = surname.getText().toString().trim();
-        final String estateName = estate.getText().toString().trim();
-        final String mail = email.getText().toString().trim();
-        final String phone = phoneNumber.getText().toString().trim();
         mAuth.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if(task.isSuccessful()){
                     //if user creation was successful
 
                    // reference = FirebaseDatabase.getInstance().getReference("Landlord");
-                    rootNode = FirebaseDatabase.getInstance();
-                    reference = rootNode.getReference("Landlord");
-                    SmartModel landlord = new SmartModel(Surname,estateName,mail,phone);
-                    reference.child("Landlord_phone").setValue(landlord);
+                   final loading loading = new loading(RegistrationActivity.this);
+                   loading.startLoadingDialog();
                    Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(RegistrationActivity.this,LandlordsActivity.class));
-                }else{
-                    Toast.makeText(getApplicationContext(),"Unable to create user please check your internet connection and try again",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Unable to create user ",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -191,7 +183,7 @@ public class RegistrationActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String Email = email.getText().toString().trim();
                 String emailPattern = "[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
-                if(Email.isEmpty()||!Email.matches(emailPattern)){
+                if(TextUtils.isEmpty(Email)||!Email.matches(emailPattern)){
                     email.setError("Invalid email address!");
                 }else{
                     email.setError(null);
@@ -214,7 +206,7 @@ public class RegistrationActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 int length = 8;
                 String password = Password.getText().toString().trim();
-               if(password.isEmpty()||password.length()<length){
+               if(TextUtils.isEmpty(password)||password.length()<length){
                    Password.setError("Password cannot be less than eight characters!");
                }else{
                    Password.setError(null);
@@ -288,6 +280,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final String AccountNumber = accountNumber.getText().toString();
         final String payBill  = payBillNumber.getText().toString();
+        final String Surname = surname.getText().toString().trim();
+        final String estateName = estate.getText().toString().trim();
+        final String mail = email.getText().toString().trim();
+        final String phone = phoneNumber.getText().toString().trim();
 
         int value=0;
         int val=0;
@@ -301,10 +297,14 @@ public class RegistrationActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 rootNode=FirebaseDatabase.getInstance();
                 reference = rootNode.getReference("Landlord");
-                SmartModel model = new SmartModel(finalValue, finalVal);
-                reference.child("Landlord_phone").setValue(model);
+                String id = reference.push().getKey();
+                SmartModel landlord = new SmartModel(id,Surname, estateName,mail, phone,finalValue,finalVal);
+                assert id != null;
+                reference.child(id).setValue(landlord);
+                validate();
                 createUser();
             }
         });

@@ -1,35 +1,24 @@
 package com.example.smartestate;
 
 public class SmartModel {
-     String EstateName,Surname,email,blockNumber,password,confirmPassword,phoneNumber;
+     String EstateName,Surname,email,blockNumber,password,confirmPassword,phoneNumber,landlordId;
      int houseNumber, payBill, accountNumber;
 
     public SmartModel(){
 
     }
 
-    public SmartModel(String estateName, String surname, String blockNumber, String password,String email ,String confirmPassword, int houseNumber, String phoneNumber) {
-        EstateName = estateName;
-        Surname = surname;
-        this.blockNumber = blockNumber;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.houseNumber = houseNumber;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
 
-    public SmartModel(String surname,String EstateName,String email, String phoneNumber){
+    public SmartModel(String landlordId,String surname,String EstateName,String email, String phoneNumber, int accountNumber, int payBill){
+        this.landlordId = landlordId;
         this.Surname = surname;
         this.EstateName = EstateName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    public SmartModel(int accountNumber, int payBill){
         this.accountNumber = accountNumber;
         this.payBill = payBill;
     }
+
 
     public String getEstateName() {
         return EstateName;
