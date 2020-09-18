@@ -19,16 +19,15 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch(position){
             case 0:
-                return new rentFragment();
-            default:
-                return null;
-
-
-
+                    return new rentFragment();
+            case 1:
+                    return new occupancyFragment();
+            case 2:
+                    return new expensesFragment();
         }
-
+        return null;
     }
 
     @Override

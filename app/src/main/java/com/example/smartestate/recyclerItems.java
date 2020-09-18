@@ -8,9 +8,7 @@ public class recyclerItems {
         return mBuildingName;
     }
 
-    public void setmBuildingName(String mBuildingName) {
-        this.mBuildingName = mBuildingName;
-    }
+
 
     public recyclerItems(String mBuildingName,int mTotalAmount,String mEstateName,int mEstateImage,  int mTotalDue){
             this.mEstateImage = mEstateImage;
@@ -22,6 +20,10 @@ public class recyclerItems {
 
     public int getmEstateImage() {
         return mEstateImage;
+    }
+
+    public void setmBuildingName(String mBuildingName) {
+        this.mBuildingName = mBuildingName;
     }
 
     public void setmEstateImage(int mEstateImage) {

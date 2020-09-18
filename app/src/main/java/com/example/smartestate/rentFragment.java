@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -69,7 +71,7 @@ public class rentFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         return v;
     }
-
+    //customize the add building dialog
     public void addBuilding(){
         addBuildingDialog.setContentView(R.layout.add_building_dialog);
         close = (ImageView)addBuildingDialog.findViewById(R.id.close);
@@ -99,8 +101,6 @@ public class rentFragment extends Fragment {
                 unitFourPrice = (EditText)addBuildingDialog.findViewById(R.id.unitFourPrice);
                 addBuildingDialog.show();
 
-
-
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +116,7 @@ public class rentFragment extends Fragment {
             }
         });
 
+        Objects.requireNonNull(addBuildingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         addBuildingDialog.show();
 
 
@@ -150,5 +151,12 @@ public class rentFragment extends Fragment {
             imageOfEstate.setImageBitmap(photo);
             imageOfEstate.setImageURI(data.getData());
         }
+    }
+    //this method is meant to add items to the card items
+    public void addItems(){
+        String estateName = nameEstate.getText().toString();
+        String buildingName = nameBuilding.getText().toString();
+       // items.add(new recyclerItems(buildingNam));
+
     }
 }

@@ -23,4 +23,9 @@ public class MainActivity extends AppCompatActivity {
             }
         },TIME_DELAY);
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+    }
 }
