@@ -15,19 +15,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter <RecyclerViewAdapt
     private ArrayList<recyclerItems>mRecyclerItems;
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder{
-        public ImageView mEstateImage;
-        public TextView buildingName, rentTotal, total, totalDue, amountDue;
-
+        public ImageView mImageView;
+        public TextView  mTenant, mEstateName, mBlockNumber, mHouseNumber;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            mEstateImage = itemView.findViewById(R.id.estateImage);
-            buildingName = itemView.findViewById(R.id.buildingName);
-            rentTotal = itemView.findViewById(R.id.rentTotal);
-            total = itemView.findViewById(R.id.total);
-            totalDue = itemView.findViewById(R.id.totalDue);
-            amountDue = itemView.findViewById(R.id.amountDue);
-
+            mImageView = itemView.findViewById(R.id.estateImage);
+            mTenant = itemView.findViewById(R.id.buildingName);
+            mEstateName = itemView.findViewById(R.id.EstateName);
+            mBlockNumber = itemView.findViewById(R.id.rentTotal);
+            mHouseNumber = itemView.findViewById(R.id.totalDue);
         }
     }
     public RecyclerViewAdapter(ArrayList<recyclerItems>recyclerItems){
@@ -37,23 +34,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter <RecyclerViewAdapt
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_rent_fragment_items, parent, false);
-       RecyclerViewHolder rvh = new RecyclerViewHolder(v);
-       return rvh;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_rent_fragment_items,parent,false);
+        return new RecyclerViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        recyclerItems currentItems = mRecyclerItems.get(position);
-        holder.mEstateImage.setImageResource(currentItems.getmEstateImage());
-        holder.buildingName.setText(currentItems.getmBuildingName());
-        holder.rentTotal.setText(currentItems.getmTotalAmount());
-        holder.total.setText(currentItems.getmTotal());
-        holder.totalDue.setText(currentItems.getmTotalDue());
+        recyclerItems currentItem = mRecyclerItems.get(position);
+        holder.mImageView.setImageResource(currentItem.getTenantImage());
+        holder.mTenant.setText(currentItem.getTenant());
+        holder.mEstateName.setText(currentItem.getEstate());
+        holder.mBlockNumber.setText(currentItem.getBlock());
+        holder.mHouseNumber.setText(currentItem.getHouseNumber());
     }
 
     @Override
     public int getItemCount() {
-        return mRecyclerItems.size();
+        return  mRecyclerItems.size();
     }
 }

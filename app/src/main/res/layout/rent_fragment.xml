@@ -25,7 +25,7 @@
         android:id="@+id/building"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/addBuilding"
+        android:text="@string/addTenant"
         android:layout_alignBottom="@+id/rentRecyclerView"
         android:layout_toStartOf="@+id/addBuilding"
         android:layout_marginBottom="30dp"

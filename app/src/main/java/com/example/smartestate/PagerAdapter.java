@@ -10,11 +10,15 @@ import java.util.Objects;
 public class PagerAdapter extends FragmentPagerAdapter {
     private int numOfTabs;
 
-    public PagerAdapter(@NonNull FragmentManager fm, int numOfTabs) {
-        super(Objects.requireNonNull(fm));
+//    public PagerAdapter(@NonNull FragmentManager fm, int numOfTabs) {
+//        super(Objects.requireNonNull(fm));
+//        this.numOfTabs = numOfTabs;
+//    }
+
+    public PagerAdapter(@NonNull FragmentManager fm, int behavior, int numOfTabs) {
+        super(fm, behavior);
         this.numOfTabs = numOfTabs;
     }
-
 
     @NonNull
     @Override

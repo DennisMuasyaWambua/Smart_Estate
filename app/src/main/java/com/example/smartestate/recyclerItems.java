@@ -1,72 +1,66 @@
 package com.example.smartestate;
 
+import android.graphics.Bitmap;
+
 public class recyclerItems {
-    private int mEstateImage, mTotalAmount, mTotalDue;
-    private String mTotal, mDue, mBuildingName, mEstateName;
+    private Bitmap tenantImage;
+    private int houseNumber;
+   private String estate, tenant, block, phone;
 
-    public String getmBuildingName() {
-        return mBuildingName;
+   public recyclerItems(Bitmap tenantImage, String estate, String tenant, String block, String phone, int houseNumber){
+       this.tenantImage = tenantImage;
+       this.estate = estate;
+       this.tenant = tenant;
+       this.block = block;
+       this.phone = phone;
+       this.houseNumber=houseNumber;
+   }
+
+    public Bitmap getTenantImage() {
+        return tenantImage;
     }
 
-
-
-    public recyclerItems(String mBuildingName,int mTotalAmount,String mEstateName,int mEstateImage,  int mTotalDue){
-            this.mEstateImage = mEstateImage;
-            this.mTotalAmount = mTotalAmount;
-            this.mTotalDue = mTotalDue;
-            this.mBuildingName = mBuildingName;
-            this.mEstateName = mEstateName;
-        }
-
-    public int getmEstateImage() {
-        return mEstateImage;
+    public void setTenantImage(Bitmap tenantImage) {
+        this.tenantImage = tenantImage;
     }
 
-    public void setmBuildingName(String mBuildingName) {
-        this.mBuildingName = mBuildingName;
+    public int getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setmEstateImage(int mEstateImage) {
-        this.mEstateImage = mEstateImage;
+    public void setHouseNumber(int houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
-    public int getmTotalAmount() {
-        return mTotalAmount;
+    public String getEstate() {
+        return estate;
     }
 
-    public void setmTotalAmount(int mTotalAmount) {
-        this.mTotalAmount = mTotalAmount;
+    public void setEstate(String estate) {
+        this.estate = estate;
     }
 
-    public int getmTotalDue() {
-        return mTotalDue;
+    public String getTenant() {
+        return tenant;
     }
 
-    public void setmTotalDue(int mTotalDue) {
-        this.mTotalDue = mTotalDue;
+    public void setTenant(String tenant) {
+        this.tenant = tenant;
     }
 
-    public String getmTotal() {
-        return mTotal;
+    public String getBlock() {
+        return block;
     }
 
-    public void setmTotal(String mTotal) {
-        this.mTotal = mTotal;
+    public void setBlock(String block) {
+        this.block = block;
     }
 
-    public String getmDue() {
-        return mDue;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setmDue(String mDue) {
-        this.mDue = mDue;
-    }
-
-    public String getmEstateName() {
-        return mEstateName;
-    }
-
-    public void setmEstateName(String mEstateName) {
-        this.mEstateName = mEstateName;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

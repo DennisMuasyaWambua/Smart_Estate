@@ -99,4 +99,14 @@
     <string name="submit">Submit</string>
     <string name="balance">Total rent balance</string>
     <string name="loading">Loading...</string>
+    <string name="houseNumber">house number</string>
+    <string name="tenantImage">Tenant image</string>
+    <string name="tenantName">Name of tenant</string>
+    <string name="addTenant">add Tenant</string>
+    <string name="nameOfTenant">Name of tenant</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="tenants">Tenant</string>
+    <string name="buildings">Buildings</string>
+    <string name="number">0</string>
+    <string name="block">A-1</string>
 </resources>

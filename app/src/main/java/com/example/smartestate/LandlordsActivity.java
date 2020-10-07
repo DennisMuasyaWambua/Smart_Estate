@@ -25,7 +25,7 @@ public class LandlordsActivity extends AppCompatActivity {
         Occupancy = (TabItem)findViewById(R.id.Occupancy);
         Expenses = (TabItem)findViewById(R.id.Expenses);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),0,tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

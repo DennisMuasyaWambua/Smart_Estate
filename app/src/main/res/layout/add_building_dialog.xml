@@ -8,7 +8,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/oceanBlue"
+            app:cardBackgroundColor="#00e5ff"
             app:cardCornerRadius="30dp"
             app:cardElevation="30dp"
             android:layout_alignParentTop="true"
@@ -25,61 +25,74 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/cancel"
                         android:layout_gravity="end"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:layout_margin="5dp"
                         android:contentDescription="@string/addBuilding" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/imageOfTheBuilding"
+                                android:text="@string/tenantImage"
                                 android:textSize="16sp"
                                 android:textColor="@color/backgroundColor"
                                 android:layout_margin="5dp"
                                 />
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                app:cardCornerRadius="50dp"
-                                app:cardElevation="20dp"
-                                android:layout_margin="5dp">
+                            <LinearLayout
+                                android:id="@+id/imageData"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                >
+                                <Button
+                                    android:id="@+id/uploadPicture"
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/cyan_background"
+                                    android:text="@string/upload"
+                                    android:textAllCaps="false"
+                                    android:layout_margin="5dp"/>
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    app:cardCornerRadius="50dp"
+                                    app:cardElevation="20dp"
+                                    android:layout_margin="5dp">
                                     <ImageView
                                         android:id="@+id/imageOfEstate"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:src="@drawable/ic_home_black_24dp"
                                         android:contentDescription="@string/estateImage"/>
-                            </androidx.cardview.widget.CardView>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:orientation="horizontal"
-                                android:gravity="center">
-                                <Button
-                                    android:id="@+id/uploadPicture"
-                                    android:layout_width="100dp"
-                                    android:layout_height="50dp"
-                                    android:background="@drawable/white_edit_text"
-                                    android:text="@string/upload"
-                                    android:textAllCaps="false"/>
+                                </androidx.cardview.widget.CardView>
+
                                 <ImageButton
                                     android:id="@+id/takePicture"
                                     android:layout_width="100dp"
                                     android:layout_height="50dp"
-                                    android:background="@drawable/white_edit_text"
+                                    android:background="@drawable/cyan_background"
                                     android:layout_margin="5dp"
                                     android:src="@drawable/camera"
                                     android:contentDescription="@string/takePhoto"/>
-
-
-
-                                    
                             </LinearLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nameOfEstate"
+                        android:textColor="@color/backgroundColor"
+                        android:textSize="16sp"/>
+                    <EditText
+                        android:id="@+id/estate"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/white_edit_text"
+                        android:hint="@string/nameOfEstate"
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:inputType="text"
+                        android:autofillHints="@string/nameOfEstate" />
                        <TextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:text="@string/EstateName"
+                           android:text="@string/tenantName"
                            android:textColor="@color/backgroundColor"
                            android:textSize="16sp"
                            />
@@ -89,7 +102,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:background="@drawable/white_edit_text"
-                                android:hint="@string/nameOfEstate"
+                                android:hint="@string/nameOfTenant"
                                 android:gravity="center"
                                 android:drawableStart="@drawable/block_number"
                                 android:layout_margin="10dp"
@@ -98,7 +111,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/building"
+                            android:text="@string/blockNumber"
                             android:textColor="@color/backgroundColor"
                             android:textSize="16sp"/>
                             <EditText
@@ -106,7 +119,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:background="@drawable/white_edit_text"
-                                android:hint="@string/nameOfBuilding"
+                                android:hint="@string/blockNumber"
                                 android:gravity="center"
                                 android:layout_margin="10dp"
                                 android:drawableStart="@drawable/ic_home_black_24dp"
@@ -114,13 +127,30 @@
                                 android:autofillHints="@string/nameOfBuilding"
                                 />
                             <!--Here we will install the unit price picker -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:text="@string/phoneNumber"
+                                android:textColor="@color/backgroundColor"/>
+                            <EditText
+                                android:id="@+id/PhoneNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@drawable/white_edit_text"
+                                android:hint="@string/phoneNumber"
+                                android:gravity="center"
+                                android:layout_margin="5dp"
+                                android:inputType="phone"
+                                android:autofillHints="@string/phoneNumber" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/backgroundColor"
                             android:textSize="16sp"
-                            android:text="@string/capacity"/>
+                            android:text="@string/houseNumber"/>
                               <NumberPicker
                                   android:id="@+id/capacityPicker"
                                   android:layout_width="wrap_content"
@@ -132,10 +162,11 @@
                             android:id="@+id/newBuilding"
                             android:layout_width="300dp"
                             android:layout_height="50dp"
-                            android:text="@string/SetRoomPrices"
+                            android:text="@string/addTenant"
                             android:textColor="@color/backgroundColor"
-                            android:background="@drawable/background_yellow"
-                            android:layout_margin="20dp"/>
+                            android:background="@drawable/cyan_background"
+                            android:layout_margin="10dp"
+                            android:layout_marginBottom="10dp"/>
 
 
 

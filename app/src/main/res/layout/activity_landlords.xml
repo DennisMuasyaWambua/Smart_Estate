@@ -84,6 +84,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="90dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="30dp"
         app:cardBackgroundColor="@color/oceanBlue"
@@ -117,37 +118,51 @@
                     android:textSize="25sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/dashboard"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rentCard">
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rentCard"
-            app:tabSelectedTextColor="@color/backgroundColor"
-            app:tabTextColor="#000000"
-            android:background="@color/yellow"
-            >
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/Rent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Rent"
-                />
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/Occupancy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/occupancy"/>
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/Expenses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/expenses"/>
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/dashboard"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.tabs.TabLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rentCard"
+                app:tabSelectedTextColor="@color/backgroundColor"
+                app:tabTextColor="#000000"
+                android:background="@color/oceanBlue"
+                >
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/Rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tenants"
+                    />
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/Occupancy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buildings"/>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/Expenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/occupancy"/>
+
+            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 
 </RelativeLayout>

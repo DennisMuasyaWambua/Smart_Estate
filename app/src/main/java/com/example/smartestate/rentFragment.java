@@ -2,13 +2,17 @@ package com.example.smartestate;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +45,7 @@ public class rentFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     private Dialog addBuildingDialog;
     private ImageView close,imageOfEstate;
-    private EditText nameEstate, nameBuilding, unitOnePrice, unitTwoPrice, unitThreePrice, unitFourPrice;
+    private EditText nameEstate, nameBuilding, estate,PhoneNumber,unitOnePrice, unitTwoPrice, unitThreePrice, unitFourPrice;
     private NumberPicker capacityPicker;
     private Button newBuilding, uploadPicture;
     private ImageButton takePicture;
@@ -64,11 +68,13 @@ public class rentFragment extends Fragment {
            }
        });
         mRecyclerView = v.findViewById(R.id.rentRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new RecyclerViewAdapter(items);
-        mRecyclerView.setHasFixedSize(true);
+
 
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
         return v;
     }
     //customize the add building dialog
@@ -78,31 +84,21 @@ public class rentFragment extends Fragment {
         imageOfEstate = (ImageView)addBuildingDialog.findViewById(R.id.imageOfEstate);
         uploadPicture = (Button)addBuildingDialog.findViewById(R.id.uploadPicture);
         takePicture = (ImageButton)addBuildingDialog.findViewById(R.id.takePicture);
+        estate = (EditText)addBuildingDialog.findViewById(R.id.estate);
         nameEstate = (EditText)addBuildingDialog.findViewById(R.id.nameEstate);
         nameBuilding = (EditText)addBuildingDialog.findViewById(R.id.nameBuilding);
+        PhoneNumber = (EditText)addBuildingDialog.findViewById(R.id.PhoneNumber);
         capacityPicker = (NumberPicker)addBuildingDialog.findViewById(R.id.capacityPicker);
         newBuilding = (Button)addBuildingDialog.findViewById(R.id.newBuilding);
 
-        //listener to create a new recycler view item
         newBuilding.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                addBuildingDialog.setContentView(R.layout.room_prices_dialogue);
-                //spinner declaration
-                unitOne = (Spinner)addBuildingDialog.findViewById(R.id.unitOne);
-                unitTwo = (Spinner)addBuildingDialog.findViewById(R.id.unitTwo);
-                unitThree = (Spinner)addBuildingDialog.findViewById(R.id.unitThree);
-                unitFour = (Spinner) addBuildingDialog.findViewById(R.id.unitFour);
-
-                //editText declaration
-                unitOnePrice = (EditText)addBuildingDialog.findViewById(R.id.unitOnePrice);
-                unitTwoPrice = (EditText)addBuildingDialog.findViewById(R.id.unitTwoPrice);
-                unitThreePrice = (EditText)addBuildingDialog.findViewById(R.id.unitThreePrice);
-                unitFourPrice = (EditText)addBuildingDialog.findViewById(R.id.unitFourPrice);
-                addBuildingDialog.show();
-
+            public void onClick(View view) {
+                addItems();
             }
         });
+
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,14 +112,36 @@ public class rentFragment extends Fragment {
             }
         });
 
+        uploadPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                   if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_DENIED){
+                       String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                       requestPermissions(permission,PERMISSION_CODE);
+                   }else{
+                       takeImageFromGallery();
+                   }
+
+                }else{
+                    takeImageFromGallery();
+                }
+            }
+        });
         Objects.requireNonNull(addBuildingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        capacityPicker.setMinValue(1);
+        capacityPicker.setMaxValue(100);
+        capacityPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                capacityPicker.getValue();
+            }
+        });
         addBuildingDialog.show();
-
-
     }
 
     public void checkPermission(){
-        if(ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
             String[] permission = {Manifest.permission.CAMERA};
             requestPermissions(permission,PERMISSION_CODE);
         }else{
@@ -140,23 +158,47 @@ public class rentFragment extends Fragment {
         }else{
             Toast.makeText(getContext(),"permission denied",Toast.LENGTH_SHORT).show();
         }
+
+        if (requestCode == PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                takeImageFromGallery();
+            }else{
+                Toast.makeText(getContext(), "Permission denied....!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==REQUEST_IMAGE_CAPTURE&&resultCode==RESULT_OK){
+            assert data != null;
             Bundle extras = data.getExtras();
+            assert extras != null;
             Bitmap photo = (Bitmap)extras.get("data");
             imageOfEstate.setImageBitmap(photo);
             imageOfEstate.setImageURI(data.getData());
         }
+        assert data != null;
+        imageOfEstate.setImageURI(data.getData());
+
     }
+    //taking an image from the gallery
+    public void takeImageFromGallery(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent,IMAGE_PICK_CODE);
+    }
+
     //this method is meant to add items to the card items
     public void addItems(){
-        String estateName = nameEstate.getText().toString();
-        String buildingName = nameBuilding.getText().toString();
-       // items.add(new recyclerItems(buildingNam));
+        Bitmap tenantImage = imageOfEstate.getDrawable();
+        String nameOfEstate = estate.getText().toString();
+        String tenantName = nameEstate.getText().toString();
+        String block = nameBuilding.getText().toString();
+        String phoneNumber = PhoneNumber.getText().toString();
+        int houseNumber = capacityPicker.getValue();
 
+        items.add(new recyclerItems(tenantImage,nameOfEstate,tenantName,block,phoneNumber,houseNumber));
     }
 }
