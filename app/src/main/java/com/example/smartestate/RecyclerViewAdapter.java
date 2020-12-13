@@ -15,12 +15,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter <RecyclerViewAdapt
     private ArrayList<recyclerItems>mRecyclerItems;
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder{
-        public ImageView mImageView;
+
         public TextView  mTenant, mEstateName, mBlockNumber, mHouseNumber;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.estateImage);
             mTenant = itemView.findViewById(R.id.buildingName);
             mEstateName = itemView.findViewById(R.id.EstateName);
             mBlockNumber = itemView.findViewById(R.id.rentTotal);
@@ -41,7 +40,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter <RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         recyclerItems currentItem = mRecyclerItems.get(position);
-        holder.mImageView.setImageResource(currentItem.getTenantImage());
         holder.mTenant.setText(currentItem.getTenant());
         holder.mEstateName.setText(currentItem.getEstate());
         holder.mBlockNumber.setText(currentItem.getBlock());

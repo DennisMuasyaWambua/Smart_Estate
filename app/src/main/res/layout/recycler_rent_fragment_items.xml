@@ -10,18 +10,12 @@
         android:layout_height="match_parent"
         android:layout_margin="4dp">
 
-            <ImageView
-                android:id="@+id/estateImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="2dp"
-                android:contentDescription="@string/tenantImage" />
+
             <TextView
                 android:id="@+id/buildingName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tenantName"
-                android:layout_toEndOf="@+id/estateImage"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -31,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/blockNumber"
                 android:layout_below="@+id/buildingName"
-                android:layout_toEndOf="@+id/estateImage"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
 

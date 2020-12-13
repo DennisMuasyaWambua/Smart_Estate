@@ -151,13 +151,16 @@
                             android:textColor="@color/backgroundColor"
                             android:textSize="16sp"
                             android:text="@string/houseNumber"/>
-                              <NumberPicker
+                              <EditText
                                   android:id="@+id/capacityPicker"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="80dp"
-                                  android:background="@color/backgroundColor"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="40dp"
+                                  android:background="@drawable/white_edit_text"
                                   android:layout_margin="10dp"
-                                  android:theme="@style/NumberPickerTheme"/>
+                                  android:hint="@string/houseNumber"
+                                  android:gravity="center"
+                                  android:inputType="number"
+                                  />
                         <Button
                             android:id="@+id/newBuilding"
                             android:layout_width="300dp"

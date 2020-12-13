@@ -3,32 +3,44 @@ package com.example.smartestate;
 import android.graphics.Bitmap;
 
 public class recyclerItems {
-    private Bitmap tenantImage;
-    private int houseNumber;
-   private String estate, tenant, block, phone;
+   // private Bitmap tenantImage;
+   private String estate, tenant, block, phone,id,houseNumber,imageUrl;
 
-   public recyclerItems(Bitmap tenantImage, String estate, String tenant, String block, String phone, int houseNumber){
-       this.tenantImage = tenantImage;
+   public recyclerItems(){
+       //empty constructor;
+   }
+
+   public recyclerItems(String tenant,String imageUrl){
+       if(tenant.trim().equals(" ")){
+           tenant = "No Name";
+       }
+       this.tenant =tenant;
+       this.imageUrl = imageUrl;
+   }
+
+   public recyclerItems(String id, String estate, String tenant, String block, String phone, String houseNumber){
+       this.id=id;
        this.estate = estate;
        this.tenant = tenant;
        this.block = block;
        this.phone = phone;
        this.houseNumber=houseNumber;
+
    }
 
-    public Bitmap getTenantImage() {
-        return tenantImage;
+    public String getId() {
+        return id;
     }
 
-    public void setTenantImage(Bitmap tenantImage) {
-        this.tenantImage = tenantImage;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public int getHouseNumber() {
+    public String getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
@@ -62,5 +74,13 @@ public class recyclerItems {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

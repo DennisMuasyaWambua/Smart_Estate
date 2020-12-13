@@ -1,31 +1,26 @@
 package com.example.smartestate;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -71,12 +66,7 @@ public class RegistrationActivity extends AppCompatActivity {
         loginRedirect = (TextView)findViewById(R.id.loginRedirect);
 
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                termsAndConditions();
-            }
-        });
+        buttonRegister.setOnClickListener(v -> termsAndConditions());
     }
     public void termsAndConditions(){
         epicDialog.setContentView(R.layout.terms_pop_up);
@@ -84,19 +74,13 @@ public class RegistrationActivity extends AppCompatActivity {
         agreeButton = (Button)epicDialog.findViewById(R.id.agreeButton);
 
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                epicDialog.dismiss();
-                Toast.makeText(getApplicationContext(),"You have to agree in order to proceed",Toast.LENGTH_LONG).show();
-            }
+        cancelButton.setOnClickListener(v -> {
+            epicDialog.dismiss();
+            Toast.makeText(getApplicationContext(),"You have to agree in order to proceed",Toast.LENGTH_LONG).show();
         });
-        agreeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                accountInformation();
-               //validate();
-            }
+        agreeButton.setOnClickListener(v -> {
+            accountInformation();
+           //validate();
         });
         Objects.requireNonNull(epicDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         epicDialog.show();
@@ -105,21 +89,18 @@ public class RegistrationActivity extends AppCompatActivity {
     public void createUser(){
         String Email = email.getText().toString().trim();
         String password = Password.getText().toString().trim();
-        mAuth.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        mAuth.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(this, task -> {
 
-                if(task.isSuccessful()){
-                    //if user creation was successful
+            if(task.isSuccessful()){
+                //if user creation was successful
 
-                   // reference = FirebaseDatabase.getInstance().getReference("Landlord");
-                   final loading loading = new loading(RegistrationActivity.this);
-                   loading.startLoadingDialog();
-                   Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
-                   startActivity(new Intent(RegistrationActivity.this,LandlordsActivity.class));
-                }else {
-                    Toast.makeText(getApplicationContext(),"Unable to create user ",Toast.LENGTH_LONG).show();
-                }
+               // reference = FirebaseDatabase.getInstance().getReference("Landlord");
+               final loading loading = new loading(RegistrationActivity.this);
+               loading.startLoadingDialog();
+               Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
+               startActivity(new Intent(RegistrationActivity.this,LandlordsActivity.class));
+            }else {
+                Toast.makeText(getApplicationContext(),"Unable to create user ",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -294,26 +275,18 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final int finalValue = value;
         final int finalVal = val;
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        submit.setOnClickListener(view -> {
 
-                rootNode=FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("Landlord");
-                String id = reference.push().getKey();
-                SmartModel landlord = new SmartModel(id,Surname, estateName,mail, phone,finalValue,finalVal);
-                assert id != null;
-                reference.child(id).setValue(landlord);
-                validate();
-                createUser();
-            }
+            rootNode=FirebaseDatabase.getInstance();
+            reference = rootNode.getReference("Landlord");
+            String id = reference.push().getKey();
+            SmartModel landlord = new SmartModel(id,Surname, estateName,mail, phone,finalValue,finalVal);
+            assert id != null;
+            reference.child("Landlord").setValue(landlord);
+            validate();
+            createUser();
         });
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                epicDialog.dismiss();
-            }
-        });
+        exit.setOnClickListener(view -> epicDialog.dismiss());
         epicDialog.show();
     }
 }
