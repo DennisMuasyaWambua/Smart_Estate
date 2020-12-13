@@ -59,6 +59,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -76,7 +77,7 @@ public class rentFragment extends Fragment {
     private DatabaseReference reference;
     private FirebaseAuth mAuth;
     private Uri imageUri;
-    private StorageReference mStorageRef;
+    private StorageReference mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sage-707cf.appspot.com");
     private String id;
     private String user_image_path;
     private ProgressBar mProgressBar;
@@ -103,7 +104,7 @@ public class rentFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mAdapter = new RecyclerViewAdapter(items);
         mAuth=FirebaseAuth.getInstance();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        //mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sage-707cf.appspot.com");
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -149,14 +150,13 @@ public class rentFragment extends Fragment {
                    String[] permission = {Manifest.permission.READ_EXTERNAL_STORAGE};
                    requestPermissions(permission,PERMISSION_CODE);
                }else{
-                   //uploadImage();
                    takeImageFromGallery();
 
                }
 
             }else{
-               // uploadImage();
                 takeImageFromGallery();
+
             }
         });
         Objects.requireNonNull(addBuildingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -172,9 +172,11 @@ public class rentFragment extends Fragment {
                 requestPermissions(permission,PERMISSION_CODE);
             }else{
                 openCamera();
+
             }
         }else{
             openCamera();
+
         }
 
     }
@@ -220,11 +222,11 @@ public class rentFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==IMAGE_CAPTURE_CODE&&resultCode==RESULT_OK){
                 imageOfEstate.setImageURI(imageUri);
-//                getFileExtension(imageUri);
-//                uploadImage();
-//                getFileExtension(imageUri);
-//                uploadImage();
-               // uploadImage();
+
+
+                uploadImage();
+
+
         }
         if(requestCode==IMAGE_PICK_CODE&&resultCode==RESULT_OK){
 //               Bundle extras = data.getExtras();
@@ -232,12 +234,12 @@ public class rentFragment extends Fragment {
 //               imageOfEstate.setImageBitmap(imageBitMap);
 //               imageUri = data.getData();
                imageOfEstate.setImageURI(data.getData());
-               
-//               imageUri = data.getData();
-//               getFileExtension(imageUri);
-//               uploadImage();
 
-               //uploadImage();
+             imageUri = data.getData();
+             uploadImage();
+
+
+
         }
     }
 
@@ -264,37 +266,33 @@ public class rentFragment extends Fragment {
 
 
     }
-    private String getFileExtension(Uri uri){
-        ContentResolver contentResolver = getActivity().getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
-    private void uploadImage(){
-        if(imageUri!=null){
-            StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()+"."+getFileExtension(imageUri));
-            fileRef.putFile(imageUri)
-                    .addOnSuccessListener(taskSnapshot -> {
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mProgressBar.setProgress(0);
-                            }
-                        },2000);
-                        Toast.makeText(getContext(),"upload successful",Toast.LENGTH_SHORT).show();
-                        recyclerItems tenant = new recyclerItems(nameEstate.getText().toString().trim(),
-                                fileRef.getDownloadUrl().toString());
-                        String uploadid = reference.push().getKey();
-                        reference.child(id).child(uploadid).setValue(tenant);
-                    })
-                    .addOnFailureListener(e -> Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show())
-                    .addOnProgressListener(snapshot -> {
-                        double progress = (100.0*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
-                        mProgressBar.setProgress((int)progress);
 
-                    });
-        }else{
-            Toast.makeText(getContext(),"No file selected",Toast.LENGTH_SHORT).show();
+    public void uploadImage(){
+        if(imageUri!=null){
+            ProgressDialog pd = new ProgressDialog(getContext());
+            pd.setTitle("Uploading...");
+            pd.show();
+
+            StorageReference ref = mStorageRef.child("Tenant_Image/"+ UUID.randomUUID().toString());
+            ref.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    pd.dismiss();
+                    Toast.makeText(getContext(),"Image uploaded successfully",Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(getContext(),"Failed"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    double progress = (100.0*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                    pd.setMessage("Uploaded"+(int)progress+"%");
+                }
+            });
         }
     }
 }
