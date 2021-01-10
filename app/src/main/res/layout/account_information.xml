@@ -36,7 +36,7 @@
                         android:src="@drawable/smart1"/>
             </androidx.cardview.widget.CardView>
             <EditText
-                android:id="@+id/accountNumber"
+                android:id="@+id/Account"
                 android:layout_width="300dp"
                 android:layout_height="30dp"
                 android:background="@drawable/white_edit_text"
@@ -49,7 +49,7 @@
                 android:autofillHints="@string/accountNumber"
                 />
             <EditText
-                android:id="@+id/payBillNumber"
+                android:id="@+id/payBill"
                 android:layout_width="300dp"
                 android:layout_height="30dp"
                 android:background="@drawable/white_edit_text"

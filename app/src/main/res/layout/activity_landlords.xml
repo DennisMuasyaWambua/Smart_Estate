@@ -133,7 +133,7 @@
                 android:layout_below="@+id/rentCard"
                 app:tabSelectedTextColor="@color/backgroundColor"
                 app:tabTextColor="#000000"
-                android:background="@color/oceanBlue"
+                android:background="@color/yellow"
                 >
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/Rent"

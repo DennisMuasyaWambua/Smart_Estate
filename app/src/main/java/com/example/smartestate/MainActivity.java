@@ -9,7 +9,7 @@ import android.os.Handler;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int TIME_DELAY=2000;
+    public static final int TIME_DELAY=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

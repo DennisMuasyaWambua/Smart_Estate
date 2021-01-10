@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 public class RegistrationActivity extends AppCompatActivity {
-     EditText surname, estate, email,phoneNumber, Password, confirmation, accountNumber, payBillNumber;
+     EditText surname, estate, email,phoneNumber, Password, confirmation, accountNumber, payBillNumber,account, bill;
      Button buttonRegister, agreeButton, submit;
      TextView loginRedirect;
      Dialog epicDialog;
@@ -33,19 +35,20 @@ public class RegistrationActivity extends AppCompatActivity {
      FirebaseDatabase rootNode;
      DatabaseReference reference;
      ImageView exit;
+     String id;
 
 
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //checking if user is signed in and updating the user interface appropriately
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-       if(currentUser!=null){
-           startActivity(new Intent(this,LandlordsActivity.class));
-       }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        //checking if user is signed in and updating the user interface appropriately
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//       if(currentUser!=null){
+//           startActivity(new Intent(this,LandlordsActivity.class));
+//       }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,12 @@ public class RegistrationActivity extends AppCompatActivity {
         buttonRegister = (Button)findViewById(R.id.buttonRegister);
         loginRedirect = (TextView)findViewById(R.id.loginRedirect);
 
+        loginRedirect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegistrationActivity.this,LandlordloginActivity.class));
+            }
+        });
 
         buttonRegister.setOnClickListener(v -> termsAndConditions());
     }
@@ -79,7 +88,7 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"You have to agree in order to proceed",Toast.LENGTH_LONG).show();
         });
         agreeButton.setOnClickListener(v -> {
-            accountInformation();
+            account();
            //validate();
         });
         Objects.requireNonNull(epicDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -89,12 +98,14 @@ public class RegistrationActivity extends AppCompatActivity {
     public void createUser(){
         String Email = email.getText().toString().trim();
         String password = Password.getText().toString().trim();
+
         mAuth.createUserWithEmailAndPassword(Email,password).addOnCompleteListener(this, task -> {
+            Log.d("user error",mAuth.toString());
 
             if(task.isSuccessful()){
                 //if user creation was successful
-
-               // reference = FirebaseDatabase.getInstance().getReference("Landlord");
+                //accountInformation();
+                
                final loading loading = new loading(RegistrationActivity.this);
                loading.startLoadingDialog();
                Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
@@ -106,7 +117,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
     public void validate(){
-        
+
         surname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -252,41 +263,61 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
     }
+    public void initAccountUi(){
+       // epicDialog.setContentView(R.layout.account_information);
+       // exit = (ImageView)epicDialog.findViewById(R.id.exit);
+        account = (EditText)findViewById(R.id.account);
+        bill = (EditText)findViewById(R.id.Bill);
+      //  submit = (Button)epicDialog.findViewById(R.id.submit);
+       // epicDialog.show();
+    }
     public void accountInformation(){
-        epicDialog.setContentView(R.layout.account_information);
-        accountNumber = (EditText)epicDialog.findViewById(R.id.accountNumber);
-        payBillNumber = (EditText)epicDialog.findViewById(R.id.payBillNumber);
-        exit = (ImageView)epicDialog.findViewById(R.id.exit);
-        submit = (Button)epicDialog.findViewById(R.id.submit);
+        initAccountUi();
+        String accountNumber = account.getText().toString().trim();
+        String payBillNumber = bill.getText().toString().trim();
+        String Surname = surname.getText().toString().trim();
+        String phone = phoneNumber.getText().toString().trim();
 
-        final String AccountNumber = accountNumber.getText().toString();
-        final String payBill  = payBillNumber.getText().toString();
-        final String Surname = surname.getText().toString().trim();
-        final String estateName = estate.getText().toString().trim();
-        final String mail = email.getText().toString().trim();
-        final String phone = phoneNumber.getText().toString().trim();
-
-        int value=0;
-        int val=0;
-        if(!"".equals(AccountNumber)&&!"".equals(payBill)){
-            value = Integer.parseInt(AccountNumber);
-            val = Integer.parseInt(payBill);
-        }
-
-        final int finalValue = value;
-        final int finalVal = val;
-        submit.setOnClickListener(view -> {
-
-            rootNode=FirebaseDatabase.getInstance();
-            reference = rootNode.getReference("Landlord");
-            String id = reference.push().getKey();
-            SmartModel landlord = new SmartModel(id,Surname, estateName,mail, phone,finalValue,finalVal);
-            assert id != null;
-            reference.child("Landlord").setValue(landlord);
-            validate();
-            createUser();
+        //removing the dialog
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                epicDialog.dismiss();
+            }
         });
-        exit.setOnClickListener(view -> epicDialog.dismiss());
-        epicDialog.show();
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rootNode = FirebaseDatabase.getInstance();
+                reference = rootNode.getReference("Landlord");
+                String id = reference.push().getKey();
+                SmartModel t = new SmartModel(id,payBillNumber,accountNumber,Surname,phone);
+                reference.child(id).setValue(t);
+                createUser();
+            }
+        });
+    }
+
+    public void account(){
+        initAccountUi();
+        String accountNumber = account.getText().toString().trim();
+        String payBillNumber = bill.getText().toString().trim();
+        String Surname = surname.getText().toString().trim();
+        String phone = phoneNumber.getText().toString().trim();
+
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("Landlord");
+        String id = reference.push().getKey();
+        SmartModel t = new SmartModel(id,payBillNumber,accountNumber,Surname,phone);
+        reference.child(id).setValue(t);
+        createUser();
+
+
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
     }
 }

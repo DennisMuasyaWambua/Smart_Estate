@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LandlordloginActivity">
+   <View
+       android:id="@+id/view"
+       android:layout_width="match_parent"
+       android:layout_height="100dp"
+       tools:ignore="MissingConstraints"
+       android:background="#0099ff"
+       />
+    <View
+        android:id="@+id/waterwave"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_wave_1_"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="100dp"
+        android:layout_below="@+id/view"
+        />
+ <RelativeLayout
+     android:id="@+id/circle"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginStart="150dp">
+  <de.hdodenhof.circleimageview.CircleImageView
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:src="@drawable/smart1"
+      tools:ignore="MissingConstraints"
+      tools:layout_editor_absoluteX="175dp"
+      tools:layout_editor_absoluteY="16dp" />
+
+ </RelativeLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/smartestate"
+        android:textColor="#FFF"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="100dp"
+        tools:ignore="MissingConstraints"
+        android:textSize="18sp"
+        android:layout_below="@+id/circle"
+        android:layout_marginStart="140dp"
+        />
+
+
+    <EditText
+        android:id="@+id/eMail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/waterwave"
+        android:layout_marginStart="50dp"/>
+
+    <EditText
+        android:id="@+id/passWord"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@id/eMail"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"/>
+
+    <Button
+        android:id="@+id/welcome"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/login"
+        app:elevation="10dp"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@id/passWord"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/textTosignup"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txttoSignUp"
+        android:layout_below="@+id/welcome"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="100dp"
+         />
+
+ <View
+     android:layout_width="match_parent"
+     android:layout_height="90dp"
+     android:background="@drawable/ic_bottomwave"
+     tools:ignore="MissingConstraints"
+     android:layout_below="@id/textTosignup"
+     android:layout_alignParentBottom="true"
+     android:layout_marginTop="60dp"/>
+
+</RelativeLayout>

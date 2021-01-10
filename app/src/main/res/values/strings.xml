@@ -109,4 +109,6 @@
     <string name="buildings">Buildings</string>
     <string name="number">0</string>
     <string name="block">A-1</string>
+    <string name="smartestate">Smart Estate</string>
+    <string name="txttoSignUp">Do not have an account ? sign up</string>
 </resources>

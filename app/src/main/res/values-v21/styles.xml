@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">#00000000</item>
     </style>
-    <style name="NumberPickerTheme" parent="Theme.AppCompat.Light">
-        <item name="colorAccent" >@android:color/white</item>
-        <!-- to remove the driver of the color picker -->
-        <item name="colorControlNormal" >@android:color/transparent</item>
-        <item name="android:textColorPrimary">@android:color/black</item>
-        <item name="android:textSize">20sp</item>
-
-
-    </style>
+   <style name="AppTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+       <item name="backgroundColor">@android:color/holo_purple</item>
+   </style>
 </resources>

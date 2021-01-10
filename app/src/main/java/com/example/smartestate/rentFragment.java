@@ -40,24 +40,32 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -79,7 +87,9 @@ public class rentFragment extends Fragment {
     private Uri imageUri;
     private StorageReference mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sage-707cf.appspot.com");
     private String id;
-    private String user_image_path;
+    private String imageUrl;
+    private FirebaseRecyclerOptions<recyclerItems>options;
+    private FirebaseRecyclerAdapter<recyclerItems,RecyclerViewAdapter.RecyclerViewHolder>adapter;
     private ProgressBar mProgressBar;
     private static final int IMAGE_PICK_CODE=1000;
     private static final int PERMISSION_CODE=1003;
@@ -90,7 +100,13 @@ public class rentFragment extends Fragment {
     public rentFragment() {
     }
 
+
+
     ArrayList<recyclerItems>items = new ArrayList<>();
+    recyclerItems url = new recyclerItems();
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -101,13 +117,15 @@ public class rentFragment extends Fragment {
        floatingActionButton.setOnClickListener(v1 -> addBuilding());
         mRecyclerView = v.findViewById(R.id.rentRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mAdapter = new RecyclerViewAdapter(items);
+//        mLayoutManager = new LinearLayoutManager(getContext());
+//        mAdapter = new RecyclerViewAdapter(getContext(),items);
         mAuth=FirebaseAuth.getInstance();
         //mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://sage-707cf.appspot.com");
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+        loadData();
+//        mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+
         return v;
     }
     //customize the add building dialog
@@ -259,13 +277,14 @@ public class rentFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Tenant");
         id = reference.child("Tenant").push().getKey();
-        recyclerItems tenant = new recyclerItems(id,nameOfEstate,tenantName,block,phoneNumber,houseNumber);
+        recyclerItems tenant = new recyclerItems(id,url.getImageUrl(),nameOfEstate,tenantName,block,phoneNumber,houseNumber);
         reference.child(id).setValue(tenant);
 
         reference.child(id).child("Landlord").child(mAuth.getCurrentUser().getUid()).setValue(mAuth.getCurrentUser().getEmail());
 
 
     }
+
 
     public void uploadImage(){
         if(imageUri!=null){
@@ -278,9 +297,21 @@ public class rentFragment extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     pd.dismiss();
-                    Toast.makeText(getContext(),"Image uploaded successfully",Toast.LENGTH_SHORT).show();
+//                    imageUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
+//                    url.setImageUrl(imageUrl);
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageUrl = uri.toString();
+                            url.setImageUrl(imageUrl);
+                        }
+                    });
+
+
+
                 }
-            }).addOnFailureListener(new OnFailureListener() {
+            })
+            .addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     pd.dismiss();
@@ -295,4 +326,71 @@ public class rentFragment extends Fragment {
             });
         }
     }
+    public void loadData(){
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Tenant");
+        Log.d("breakPoint",reference.getKey());
+
+
+        options= new FirebaseRecyclerOptions.Builder<recyclerItems>().setQuery(reference,recyclerItems.class).build();
+        adapter = new FirebaseRecyclerAdapter<recyclerItems, RecyclerViewAdapter.RecyclerViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull RecyclerViewAdapter.RecyclerViewHolder holder, int position, @NonNull recyclerItems model) {
+                Picasso.get().load(model.getImageUrl()).placeholder(R.drawable.account_image).fit().into(holder.tenantImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getContext(), "Could not get the image"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("image error",e.toString());
+                    }
+                });
+                holder.mTenant.setText(model.getTenant());
+                holder.mEstateName.setText(model.getEstate());
+                holder.mBlockNumber.setText(model.getBlock());
+                holder.mHouseNumber.setText(model.getHouseNumber());
+            }
+
+            @NonNull
+            @Override
+            public RecyclerViewAdapter.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_rent_fragment_items,parent,false);
+                return new RecyclerViewAdapter.RecyclerViewHolder(v);
+            }
+        };
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.startListening();
+       // mAdapter = new RecyclerViewAdapter(getContext(),items);
+        mRecyclerView.setAdapter(adapter);
+//        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(adapter!=null){
+            adapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (adapter!=null){
+            adapter.stopListening();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapter!=null){
+            adapter.startListening();
+        }
+    }
+
 }

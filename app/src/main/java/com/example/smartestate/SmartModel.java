@@ -1,32 +1,21 @@
 package com.example.smartestate;
 
 public class SmartModel {
-     String EstateName,Surname,email,blockNumber,password,confirmPassword,phoneNumber,landlordId;
-     int houseNumber, payBill, accountNumber;
-
-    public SmartModel(){
-
-    }
+     String Surname,email,blockNumber,password,confirmPassword,phoneNumber,landlordId ,payBill, accountNumber;
 
 
-    public SmartModel(String landlordId,String surname,String EstateName,String email, String phoneNumber, int accountNumber, int payBill){
+
+
+
+    public SmartModel(String landlordId,String payBill,String accountNumber,String surname, String phoneNumber){
         this.landlordId = landlordId;
         this.Surname = surname;
-        this.EstateName = EstateName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
         this.accountNumber = accountNumber;
-        this.payBill = payBill;
+        this.payBill=payBill;
+        this.phoneNumber = phoneNumber;
     }
 
 
-    public String getEstateName() {
-        return EstateName;
-    }
-
-    public void setEstateName(String estateName) {
-        EstateName = estateName;
-    }
 
     public String getSurname() {
         return Surname;
@@ -59,20 +48,43 @@ public class SmartModel {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
-    public int getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(int houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLandlordId() {
+        return landlordId;
+    }
+
+    public void setLandlordId(String landlordId) {
+        this.landlordId = landlordId;
+    }
+
+    public String getPayBill() {
+        return payBill;
+    }
+
+    public void setPayBill(String payBill) {
+        this.payBill = payBill;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }

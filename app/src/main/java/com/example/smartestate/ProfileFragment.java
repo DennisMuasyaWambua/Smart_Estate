@@ -22,7 +22,7 @@ public class ProfileFragment extends Fragment {
         LandLordHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(),RegistrationActivity.class));
+                startActivity(new Intent(getContext(),LandlordloginActivity.class));
             }
         });
         TenantsCard.setOnClickListener(new View.OnClickListener() {

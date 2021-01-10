@@ -10,16 +10,14 @@ public class recyclerItems {
        //empty constructor;
    }
 
-   public recyclerItems(String tenant,String imageUrl){
-       if(tenant.trim().equals(" ")){
-           tenant = "No Name";
-       }
-       this.tenant =tenant;
+   public recyclerItems(String imageUrl){
+
        this.imageUrl = imageUrl;
    }
 
-   public recyclerItems(String id, String estate, String tenant, String block, String phone, String houseNumber){
+   public recyclerItems(String id,String imageUrl,String estate, String tenant, String block, String phone, String houseNumber){
        this.id=id;
+       this.imageUrl = imageUrl;
        this.estate = estate;
        this.tenant = tenant;
        this.block = block;
